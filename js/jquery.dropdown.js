@@ -1072,7 +1072,7 @@
 					// Add new menu
 					if ( !item.children.menu ) {
 
-						var submenu = self.addMenu([{ parent: item.uid }]);
+						var submenu = self.addMenu([{ parent: item.uid, title: item.children.title }]);
 
 						item.children.menu = submenu[0].uid;
 
@@ -2747,14 +2747,17 @@
 				text: '',
 				value: null,
 				href: false,
+				html: null,
 
 				selected: false,
 				selectable: true,
 
 				menu: false,
 				parent: false,
+
 				children: {
 					menu: false,
+					title: '',
 					items: false
 				}
 
