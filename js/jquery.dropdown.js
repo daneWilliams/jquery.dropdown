@@ -2580,6 +2580,8 @@
 			target.elem.addClass( cls.menuOpen );
 
 			// Update positions
+			elem.menuWrapper.css({ x: 0, y: 0 });
+
 			current.elem.css({ x: '-100%' });
 			target.elem.css({ x: 0 });
 
