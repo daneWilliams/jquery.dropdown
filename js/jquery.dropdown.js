@@ -52,6 +52,7 @@
 			closing: false,
 			animating: false,
 			resizing: false,
+			resetting: false,
 
 			selected: null,
 			focused: null,
@@ -367,7 +368,7 @@
 		 *
 		 *	================================================================ */
 
-		openMenu: function( menu ) {
+		openMenu: function( menu, noAnimation ) {
 
 			var self = this;
 			var inst = self.instance,
@@ -389,7 +390,7 @@
 			self._beforeOpenMenu( menu, current );
 
 			// No animation
-			if ( !opt.animate || menu.uid == current.uid ) {
+			if ( noAnimation || !opt.animate || menu.uid == current.uid ) {
 
 				// Callback
 				self._afterOpenMenu( menu, current );
@@ -619,6 +620,33 @@
 			});
 
 			return resize;
+
+		},
+
+
+		/**
+		 *
+		 *	Reset the dropdown
+		 *
+		 *	================================================================ */
+
+		reset: function( clear ) {
+
+			var self = this;
+			var inst = self.instance,
+			    opt  = self.options,
+			    elem = self.elements,
+			    cls  = self.classes;
+
+			// Get the menus
+			var target  = self.getMenu( 'default' );
+			var current = self.getMenu();
+
+			// Callback
+			self._beforeReset( clear, target, current );
+
+			// Callback
+			self._afterReset( clear, target, current );
 
 		},
 
@@ -2227,8 +2255,12 @@
 			    cls  = self.classes;
 
 			// Update state
-			inst.closing = false;
-			inst.open = false;
+			setTimeout(function() {
+
+				inst.closing = false;
+				inst.open = false;
+
+			}, 1 );
 
 			// Update classes
 			elem.dropdown.removeClass( cls.closing );
@@ -2238,7 +2270,7 @@
 			elem.overlay.css({ display: '', opacity: '' });
 
 			// Reset menus
-			self.open( 'default', true );
+			self.reset();
 
 			// Reset dimensions
 			elem.menuWrapper.css({ height: '' });
@@ -2448,6 +2480,67 @@
 
 			// Event
 			self.$elem.trigger( 'dropdown-after-resize', [ menu, resize, self ] );
+
+		},
+
+
+		/**
+		 *
+		 *	Called before the dropdown is resized
+		 *
+		 *	================================================================ */
+
+		_beforeReset: function( clear, target, current ) {
+
+			var self = this;
+			var inst = self.instance;
+
+			// Update state
+			inst.resetting = true;
+
+			// Event
+			self.$elem.trigger( 'dropdown-before-reset', [ clear, target, current, self ] );
+
+		},
+
+
+		/**
+		 *
+		 *	Called before the dropdown is reset
+		 *
+		 *	================================================================ */
+
+		_afterReset: function( clear, target, current ) {
+
+			var self = this;
+			var inst = self.instance,
+			    elem = self.elements,
+			    cls  = self.classes;
+
+			// Update state
+			inst.resetting = false;
+			inst.opening   = false;
+			inst.closing   = false;
+			inst.animating = false;
+
+			current.open   = false;
+			target.open    = true;
+
+			// Update plugin
+			inst.menu.current = target.uid;
+
+			// Update classes
+			target.elem.removeClass( cls.menuOpening );
+			current.elem.removeClass( cls.menuClosing );
+
+			current.elem.removeClass( cls.menuOpen );
+			target.elem.addClass( cls.menuOpen );
+
+			// Reset dimensions
+			current.elem.find( '.' + cls.core.menuList ).eq(0).css({ height: '' });
+
+			// Event
+			self.$elem.trigger( 'dropdown-after-reset', [ clear, target, current, self ] );
 
 		},
 
