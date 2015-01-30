@@ -2560,7 +2560,12 @@
 			current.elem.removeClass( cls.menuOpen );
 			target.elem.addClass( cls.menuOpen );
 
+			// Update positions
+			current.elem.css({ x: '-100%' });
+			target.elem.css({ x: 0 });
+
 			// Reset dimensions
+			elem.menuWrapper.css({ height: '' });
 			current.elem.find( '.' + cls.core.menuList ).eq(0).css({ height: '' });
 
 			// Event
