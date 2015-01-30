@@ -1,0 +1,221 @@
+/**
+ *	=Positioning
+ *	---------------------------------------------------------------- */
+
+.dropdown {
+
+	&,
+	* {
+		position: relative;
+	}
+
+	.dropdown-menu-wrapper,
+	.dropdown-mask,
+	.dropdown-menu,
+	.dropdown-close,
+	.dropdown-back {
+		position: absolute;
+	}
+
+	.dropdown-menu-open {
+		position: relative;
+	}
+
+	.dropdown-overlay {
+		position: fixed;
+	}
+
+	// States
+	&.dropdown-open {
+		z-index: 1002;
+	}
+	&.dropdown-opening {
+		z-index: 1003;
+	}
+	&.dropdown-closing {
+		z-index: 1001;
+	}
+
+}
+
+.dropdown-mask {
+	z-index: 1000;
+}
+
+.dropdown-menu-wrapper {
+	z-index: 3;
+}
+
+.dropdown-overlay,
+.dropdown-back,
+.dropdown-close {
+	z-index: 2;
+}
+
+.dropdown-toggle,
+.dropdown-title {
+	z-index: 1;
+}
+
+// Values
+.dropdown-overlay,
+.dropdown-mask {
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.dropdown-menu-wrapper {
+	left: 0;
+}
+
+.dropdown-below .dropdown-menu-wrapper {
+	top: 100%;
+	bottom: auto;
+	margin: 3px 0 0;
+}
+
+.dropdown-above .dropdown-menu-wrapper {
+	top: auto;
+	bottom: 100%;
+	margin: 0 0 3px;
+}
+
+.dropdown-menu {
+	top: 0;
+	left: 0;
+}
+
+.dropdown-close {
+	right: 0;
+}
+
+.dropdown-back {
+	left: 0;
+}
+
+
+/**
+ *	=Display
+ *	---------------------------------------------------------------- */
+
+.dropdown,
+.dropdown-toggle {
+	display: inline-block;
+}
+
+.dropdown-menu-wrapper,
+.dropdown-menu,
+.dropdown-header,
+.dropdown-mask,
+.dropdown-overlay,
+.dropdown-title,
+.dropdown-close,
+.dropdown-back {
+	display: none;
+}
+
+.dropdown.dropdown-open .dropdown-menu-wrapper,
+.dropdown-animating .dropdown-mask,
+.dropdown-menu-open,
+.dropdown-main-menu,
+.dropdown-child .dropdown-header,
+.dropdown-child .dropdown-title,
+.dropdown-child .dropdown-back {
+	display: block;
+}
+
+
+/**
+ *	=Dimensions
+ *	---------------------------------------------------------------- */
+
+// Widths
+.dropdown,
+.dropdown-toggle {
+	max-width: 100%;
+}
+
+.dropdown-menu {
+	width: inherit;
+}
+
+.dropdown-menu-wrapper {
+	min-width: @dropdown-width;
+}
+
+.dropdown-menu-container,
+.dropdown-child,
+.dropdown-parent {
+	width: 100%;
+}
+
+// Heights
+.dropdown-toggle {
+	height: auto;
+	line-height: 28px;
+}
+
+// Spacing
+.dropdown-toggle {
+	padding: 6px 38px 6px 14px;
+}
+
+.dropdown-menu-wrapper {
+	padding: @dropdown-menu-spacing 0;
+}
+
+.dropdown-divider {
+	margin: @dropdown-menu-spacing 0;
+}
+
+// Font sizes
+.dropdown {
+	font-size: 14px;
+}
+
+
+/**
+ *	=Clearfix
+ *	---------------------------------------------------------------- */
+
+.dropdown-item,
+.dropdown-header {
+
+	*zoom: 1;
+
+	&:before,
+	&:after {
+		content: '';
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+
+}
+
+
+/**
+ *	=Menus
+ *	---------------------------------------------------------------- */
+
+.dropdown-menu-wrapper {
+	overflow: hidden;
+	opacity: 0;
+}
+
+// Lists
+.dropdown-list,
+.dropdown-item {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.dropdown-list {
+	overflow-x: hidden;
+	overflow-y: auto;
+}

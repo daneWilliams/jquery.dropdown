@@ -1,0 +1,55 @@
+@media all and (max-width: @dropdown-mobile-width) {
+
+	// Scrolling
+	html.dropdown-open,
+	html.dropdown-opening,
+	html.dropdown-closing {
+
+		&,
+		body {
+			overflow: hidden;
+		}
+
+	}
+
+	// Menu position
+	.dropdown-menu-wrapper {
+		width: auto !important;
+		height: auto !important;
+		position: fixed !important;
+		top: @dropdown-mobile-spacing;
+		bottom: @dropdown-mobile-spacing;
+		left: @dropdown-mobile-spacing;
+		right: @dropdown-mobile-spacing;
+		margin: 0;
+		border: 0;
+	}
+
+	.dropdown-above,
+	.dropdown-below {
+
+		.dropdown-menu-wrapper {
+			top: @dropdown-mobile-spacing;
+			bottom: @dropdown-mobile-spacing;
+			margin: 0;
+		}
+
+	}
+
+	// Show mobile elements
+	.dropdown-header,
+	.dropdown-close,
+	.dropdown-title,
+	.dropdown.dropdown-open .dropdown-overlay {
+		display: block;
+	}
+
+}
+
+@media all and (min-width: (@dropdown-mobile-width + 1px) ) {
+
+	.dropdown-overlay {
+		display: none !important;
+	}
+
+}

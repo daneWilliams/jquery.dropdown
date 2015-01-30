@@ -1,0 +1,126 @@
+/**
+ *	=Title
+ *	---------------------------------------------------------------- */
+
+.dropdown-title {
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+	font-size: 13px;
+	line-height: 20px;
+	min-height: 20px;
+	padding: 5px 45px 10px;
+	margin: 0 0 5px;
+	border-bottom: 1px solid @dropdown-header-border;
+}
+
+
+/**
+ *	=Close/Back
+ *	---------------------------------------------------------------- */
+
+.dropdown-close,
+.dropdown-back {
+
+	background: @dropdown-button-background;
+	top: -5px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	color: @dropdown-button-color;
+
+	&:hover {
+		background: @dropdown-button-hover-background;
+		color: @dropdown-button-hover-color;
+	}
+
+	&,
+	&:hover {
+		text-decoration: none;
+	}
+
+	.dropdown-icon {
+		float: none;
+		display: block;
+		text-align: center;
+		line-height: 40px;
+	}
+
+	.dropdown-text {
+		display: none;
+	}
+
+}
+
+
+// Menu
+.dropdown-menu-wrapper {
+	.dropdown-box();
+}
+
+
+/**
+ *	=Items
+ *	---------------------------------------------------------------- */
+
+.dropdown-item {
+
+	margin: 0 0 1px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+}
+
+// Divider
+.dropdown-divider {
+	border-bottom: 1px solid @dropdown-divider-border;
+}
+
+// Links
+.dropdown-link {
+
+	background: @dropdown-item-background;
+	color: @dropdown-item-color;
+	display: block;
+	line-height: 30px;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 5px 15px;
+
+	&,
+	&:hover {
+		text-decoration: none;
+	}
+
+	&:hover {
+		background: @dropdown-item-hover-background;
+		color: @dropdown-item-hover-color;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	// Icon
+	.dropdown-icon {
+		opacity: .5;
+	}
+
+}
+
+.dropdown-focus .dropdown-link {
+	background: @dropdown-item-focus-background;
+	color: @dropdown-item-focus-color;
+}
+
+.dropdown-selected .dropdown-link {
+	background: @dropdown-item-selected-background;
+	color: @dropdown-item-selected-color;
+	text-decoration: none;
+	outline: none;
+}
