@@ -1756,9 +1756,18 @@
 			elem.menuMask.prependTo( elem.menuWrapper );
 
 			// Toggle button
-			if ( opt.toggleElem.button ) {
+			var toggleButton = ( opt.toggleElem.button ? $( opt.toggleElem.button ) : false );
 
-				elem.toggleButton = $( opt.toggleElem.button );
+			if ( toggleButton && !toggleButton.length ) {
+
+				opt.toggleElem.button = false;
+				toggleButton = false;
+
+			}
+
+			if ( toggleButton ) {
+
+				elem.toggleButton = toggleButton;
 
 			} else {
 
@@ -1767,15 +1776,25 @@
 
 			}
 
-			elem.toggleButton.appendTo( elem.dropdown );
+			elem.toggleButton.eq(0).appendTo( elem.dropdown );
 
-			if ( opt.toggleElem.text ) {
+			// Toggle text
+			var toggleText = ( opt.toggleElem.text ? $( opt.toggleElem.text ) : false );
 
-				elem.toggleText = $( opt.toggleElem.text );
+			if ( toggleText && !toggleText.length ) {
+
+				opt.toggleElem.text = false;
+				toggleText = false;
+
+			}
+
+			if ( toggleText ) {
+
+				elem.toggleText = toggleText;
 
 			} else {
 
-				if ( opt.toggleElem.button ) {
+				if ( toggleButton ) {
 
 					elem.toggleText = elem.toggleButton;
 
