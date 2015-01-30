@@ -2217,6 +2217,8 @@
 			// Update classes
 			elem.dropdown.addClass( cls.opening );
 
+			$('html').addClass( cls.pageOpening );
+
 			// Close any other dropdowns
 			$( '.' + cls.core.open ).trigger( 'close' );
 
@@ -2247,6 +2249,8 @@
 			elem.dropdown.removeClass( cls.opening );
 			elem.dropdown.addClass( cls.open );
 
+			$('html').removeClass( cls.pageOpening ).addClass( cls.pageOpen );
+
 			// Focus the toggle button
 			elem.toggleButton.focus();
 
@@ -2274,6 +2278,8 @@
 
 			// Update classes
 			elem.dropdown.addClass( cls.closing );
+
+			$('html').addClass( cls.pageClosing );
 
 			// Defocus
 			self.focus( false );
@@ -2308,6 +2314,8 @@
 			// Update classes
 			elem.dropdown.removeClass( cls.closing );
 			elem.dropdown.removeClass( cls.open );
+
+			$('html').removeClass( cls.pageClosing ).removeClass( cls.pageOpen );
 
 			// Reset overlay
 			elem.overlay.css({ display: '', opacity: '' });
@@ -3154,7 +3162,11 @@
 			selected:       'dropdown-selected',
 			selectedParent: 'dropdown-parent-selected',
 
-			focused:        'dropdown-focus'
+			focused:        'dropdown-focus',
+
+			pageOpen:       'dropdown-open',
+			pageOpening:    'dropdown-opening',
+			pageClosing:    'dropdown-closing'
 
 		}
 
