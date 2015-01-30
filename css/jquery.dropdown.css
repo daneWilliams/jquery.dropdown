@@ -345,8 +345,10 @@
 @media all and (max-width: 600px) {
   html.dropdown-open,
   html.dropdown-opening,
+  html.dropdown-closing,
   html.dropdown-open body,
-  html.dropdown-opening body {
+  html.dropdown-opening body,
+  html.dropdown-closing body {
     overflow: hidden;
   }
   .dropdown-menu-wrapper {
@@ -372,7 +374,7 @@
   .dropdown-header,
   .dropdown-close,
   .dropdown-title,
-  .dropdown-open .dropdown-overlay {
+  .dropdown.dropdown-open .dropdown-overlay {
     display: block;
   }
 }
