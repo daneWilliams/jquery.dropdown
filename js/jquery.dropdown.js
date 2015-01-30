@@ -1750,16 +1750,40 @@
 			// Build the structure
 			elem.overlay.appendTo( elem.dropdown );
 
-			elem.toggleButton.appendTo( elem.dropdown );
-			elem.toggleIcon.appendTo( elem.toggleButton );
-			elem.toggleText.appendTo( elem.toggleButton );
-
 			elem.menuWrapper.appendTo( elem.dropdown );
 			elem.menuContainer.appendTo( elem.menuWrapper );
 
 			elem.menuMask.prependTo( elem.menuWrapper );
 
-			// Add text
+			// Toggle button
+			if ( opt.toggleElem.button ) {
+
+				elem.toggleButton = $( opt.toggleElem.button );
+
+			} else {
+
+				elem.toggleIcon.appendTo( elem.toggleButton );
+				elem.toggleText.appendTo( elem.toggleButton );
+
+			}
+
+			elem.toggleButton.appendTo( elem.dropdown );
+
+			if ( opt.toggleElem.text ) {
+
+				elem.toggleText = $( opt.toggleElem.text );
+
+			} else {
+
+				if ( opt.toggleElem.button ) {
+
+					elem.toggleText = elem.toggleButton;
+
+				}
+
+			}
+
+			// Set toggle text
 			elem.toggleText.html( opt.toggleText );
 
 			// Add to plugin
@@ -2959,6 +2983,14 @@
 			titleText: 'Please select',
 			backText: 'Back',
 			closeText: 'Close',
+
+			// Custom toggle
+			toggleElem: {
+
+				button: null,
+				text: null
+
+			},
 
 			// Classes
 			classes: {
