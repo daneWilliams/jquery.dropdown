@@ -2,30 +2,35 @@
  *	=Positioning
  *	---------------------------------------------------------------- */
 
+.dropdown,
+.dropdown-menu-container,
+.dropdown-list,
+.dropdown-toggle,
+.dropdown-title {
+	position: relative;
+}
+
+.dropdown-menu-wrapper,
+.dropdown-mask,
+.dropdown-menu,
+.dropdown-close,
+.dropdown-back {
+	position: absolute;
+}
+
+.dropdown-menu-open {
+	position: relative;
+}
+
+.dropdown-overlay {
+	position: fixed;
+}
+
+// States
 .dropdown {
 
-	&,
-	* {
-		position: relative;
-	}
+	z-index: 1000;
 
-	.dropdown-menu-wrapper,
-	.dropdown-mask,
-	.dropdown-menu,
-	.dropdown-close,
-	.dropdown-back {
-		position: absolute;
-	}
-
-	.dropdown-menu-open {
-		position: relative;
-	}
-
-	.dropdown-overlay {
-		position: fixed;
-	}
-
-	// States
 	&.dropdown-open {
 		z-index: 1002;
 	}

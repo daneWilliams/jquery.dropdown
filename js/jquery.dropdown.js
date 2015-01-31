@@ -672,7 +672,7 @@
 				return;
 
 			// Parent, open menu
-			if ( item.children.menu ) {
+			if ( item.selectable && item.children.menu ) {
 
 				self.openMenu( item.children.menu );
 				return;

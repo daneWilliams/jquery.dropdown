@@ -11,21 +11,27 @@
  *	=Positioning
  *	---------------------------------------------------------------- */
 .dropdown,
-.dropdown * {
+.dropdown-menu-container,
+.dropdown-list,
+.dropdown-toggle,
+.dropdown-title {
   position: relative;
 }
-.dropdown .dropdown-menu-wrapper,
-.dropdown .dropdown-mask,
-.dropdown .dropdown-menu,
-.dropdown .dropdown-close,
-.dropdown .dropdown-back {
+.dropdown-menu-wrapper,
+.dropdown-mask,
+.dropdown-menu,
+.dropdown-close,
+.dropdown-back {
   position: absolute;
 }
-.dropdown .dropdown-menu-open {
+.dropdown-menu-open {
   position: relative;
 }
-.dropdown .dropdown-overlay {
+.dropdown-overlay {
   position: fixed;
+}
+.dropdown {
+  z-index: 1000;
 }
 .dropdown.dropdown-open {
   z-index: 1002;
