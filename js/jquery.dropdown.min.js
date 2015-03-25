@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.1.1
+ *	@version		1.1.2
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
