@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.1.0
+ *	@version		1.1.1
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -258,8 +258,8 @@
 			    elem = self.elements,
 			    cls  = self.classes;
 
-			// Already closing or opening, bail
-			if ( inst.closing || inst.opening )
+			// Already closed, closing or opening, bail
+			if ( !inst.open || inst.closing || inst.opening )
 				return;
 
 			// Close a menu
