@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.1.3
+ *	@version		1.1.4
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -2191,6 +2191,9 @@
 			// Update state
 			inst.opening = true;
 
+			// Update class to allow page style changes before opening
+			$('html').addClass( cls.pageOpenBefore );
+
 			// Resize
 			var resize = self.resize( false, true );
 
@@ -2217,7 +2220,7 @@
 			// Update classes
 			elem.dropdown.addClass( cls.opening );
 
-			$('html').addClass( cls.pageOpening );
+			$('html').removeClass( cls.pageOpenBefore ).addClass( cls.pageOpening );
 
 			// Close any other dropdowns
 			$( '.' + cls.core.open ).trigger( 'close' );
@@ -3165,6 +3168,7 @@
 			focused:        'dropdown-focus',
 
 			pageOpen:       'dropdown-open',
+			pageOpenBefore: 'dropdown-before-open',
 			pageOpening:    'dropdown-opening',
 			pageClosing:    'dropdown-closing'
 
