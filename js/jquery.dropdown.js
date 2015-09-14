@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.2.0
+ *	@version		1.3.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -710,24 +710,7 @@
 				if ( item.selected ) {
 
 					// Deselect
-					item.selected = false;
-					item.elem.removeClass( cls.selected );
-
-					var index = $.inArray( item.uid, inst.selected );
-
-					inst.selected.splice( index, 1 );
-
-					// Remove value
-					if ( item.value != null ) {
-
-						if ( inst.value == null )
-							inst.value = [];
-
-						inst.value = jQuery.grep( inst.value, function(value) {
-							return value != item.value;
-						});
-
-					}
+					self.deselect( item );
 
 				} else {
 
@@ -817,6 +800,62 @@
 
 		/**
 		 *
+		 *	Deselect an item
+		 *
+		 *	================================================================ */
+
+		deselect: function( item ) {
+
+			var self = this;
+			var inst = self.instance,
+				opt  = self.options,
+				elem = self.elements,
+				cls  = self.classes;
+
+			// Get the item
+			item = self.getItem( item );
+
+			// No item, bail
+			if ( !item )
+				return false;
+
+			if ( !item.selected )
+				return false;
+
+			item.selected = false;
+			item.elem.removeClass( cls.selected );
+
+			if ( inst.selected && opt.multiple ) {
+
+				var index = $.inArray( item.uid, inst.selected );
+
+				if ( index )
+					inst.selected.splice( index, 1 );
+
+				// Remove value(s)
+				if ( item.value != null ) {
+
+					if ( inst.value == null )
+						inst.value = [];
+
+					inst.value = jQuery.grep( inst.value, function(value) {
+						return value != item.value;
+					});
+
+				}
+
+			} else {
+
+				if ( item.value == inst.value )
+					inst.value = null;
+
+			}
+
+		},
+
+
+		/**
+		 *
 		 *	Select a parent item
 		 *
 		 *	================================================================ */
@@ -824,7 +863,7 @@
 		selectParent: function( item ) {
 
 			var self = this;
-			var opt  = self.settings,
+			var opt  = self.options,
 				elem = self.elements,
 				cls  = self.classes;
 
@@ -917,6 +956,75 @@
 
 			// Update state
 			inst.focused = item.uid;
+
+		},
+
+
+		/**
+		 *
+		 *	Get value
+		 *
+		 *	================================================================ */
+
+		value: function( item ) {
+
+			var self = this;
+			var inst = self.instance;
+
+			if ( !item )
+				return inst.value;
+
+			item = self.getItem( item );
+
+			if ( item )
+				return item.value;
+
+		},
+
+
+		/**
+		 *
+		 *	Get selected item, or check if item is selected
+		 *
+		 *	================================================================ */
+
+		selected: function( item ) {
+
+			var self = this;
+			var inst = self.instance;
+
+			if ( !inst.selected )
+				return false;
+
+			if ( !item ) {
+
+				// Multiple items
+				if ( inst.selected instanceof Array ) {
+
+					var items = [];
+
+					$.each( inst.selected, function( i, uid ) {
+
+						items.push( self.getItem( uid ) );
+
+					});
+
+					return items;
+
+				}
+
+				// Single item
+				return self.getItem( inst.selected );
+
+			}
+
+			// Check if provided item is selected
+			item = self.getItem( item );
+
+			if ( !item )
+				return false;
+
+			return item.selected;
 
 		},
 
@@ -1440,6 +1548,7 @@
 
 			});
 
+			// Select item
 			elem.dropdown.on( 'click', '.' + cls.core.menuItem, function(e) {
 
 				e.preventDefault();
