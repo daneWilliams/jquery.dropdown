@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.1.4
+ *	@version		1.2.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -717,6 +717,18 @@
 
 					inst.selected.splice( index, 1 );
 
+					// Remove value
+					if ( item.value != null ) {
+
+						if ( inst.value == null )
+							inst.value = [];
+
+						inst.value = jQuery.grep( inst.value, function(value) {
+							return value != item.value;
+						});
+
+					}
+
 				} else {
 
 					// Select
@@ -724,6 +736,16 @@
 					item.elem.addClass( cls.selected );
 
 					inst.selected.push( item.uid );
+
+					// Add value
+					if ( item.value != null ) {
+
+						if ( inst.value == null )
+							inst.value = [];
+
+						inst.value.push( item.value );
+
+					}
 
 				}
 
@@ -742,6 +764,9 @@
 
 				item.selected = true;
 				item.elem.addClass( cls.selected );
+
+				// Update value
+				inst.value = item.value;
 
 			}
 
@@ -1982,6 +2007,10 @@
 			// Form select
 			if ( tag == 'SELECT' ) {
 
+				// Multiple?
+				if ( self.$elem.attr( 'multiple' ) )
+					self.options.multiple = true;
+
 				self._populateSelect();
 				return;
 
@@ -2835,6 +2864,15 @@
 		_afterSelect: function( item, previous ) {
 
 			var self = this;
+			var inst = self.instance,
+				opt  = self.options;
+
+			// Update <select /> value(s)
+			if ( 'SELECT' == self.$elem.prop('tagName') ) {
+
+				self.$elem.val( inst.value );
+
+			}
 
 			// Event
 			self.$elem.trigger( 'dropdown-after-select', [ item, previous, self ] );
