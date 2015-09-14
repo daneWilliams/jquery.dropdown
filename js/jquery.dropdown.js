@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.1.2
+ *	@version		1.1.3
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -230,7 +230,7 @@
 
 			elem.menuWrapper.transition( finish, opt.speed, function() {
 
-				// Upate state
+				// Update state
 				inst.animating = false;
 
 				// Update classes
@@ -345,7 +345,7 @@
 
 			elem.menuWrapper.transition( finish, opt.speed, function() {
 
-				// Upate state
+				// Update state
 				inst.animating = false;
 
 				// Update classes
@@ -421,7 +421,7 @@
 			current.elem.transition({ x: '-100%' }, opt.speed );
 			menu.elem.transition( finish, opt.speed, function() {
 
-				// Upate state
+				// Update state
 				inst.animating = false;
 
 				// Update classes
@@ -504,7 +504,7 @@
 			target.elem.transition({ x: 0 }, opt.speed );
 			menu.elem.transition( finish, opt.speed, function() {
 
-				// Upate state
+				// Update state
 				inst.animating = false;
 
 				// Update classes
@@ -2157,7 +2157,7 @@
 				}
 
 				// Selected?
-				if ( $this.hasClass( '.' + cls.core.selected ) )
+				if ( $this.hasClass( cls.core.selected ) )
 					item.selected = true;
 
 				// Add to items
