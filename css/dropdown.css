@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.4.0
+ *	@version		1.4.1
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -15,15 +15,6 @@
  *
  */
 
-/**
- *
- *	Structural styles
- *
- *	================================================================
- *
- *	@since			1.4.0
- *
- */
 /**
  *	=General
  *	---------------------------------------------------------------- */
@@ -236,6 +227,10 @@
   color: #333333;
   text-decoration: none;
   padding: 10px 15px;
+  padding-right: 44px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .dropdown-toggle:hover {
   background: #ffffff;
@@ -243,8 +238,10 @@
   text-decoration: none;
 }
 .dropdown-toggle .dropdown-icon {
-  float: right;
-  margin-left: 7.5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px 15px;
 }
 .dropdown-toggle .dropdown-text {
   display: block;

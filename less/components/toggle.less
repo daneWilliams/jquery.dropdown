@@ -22,6 +22,11 @@
 	color: @dropdown-toggle-color;
 	text-decoration: none;
 	padding: @dropdown-toggle-spacing-v @dropdown-toggle-spacing-h;
+	padding-right: ( ( @dropdown-toggle-spacing-h * 2 ) + @dropdown-icon-size );
+
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 
 	&:hover {
 		background: @dropdown-toggle-hover-bg;
@@ -31,8 +36,10 @@
 
 	// Icon
 	.dropdown-icon {
-		float: right;
-		margin-left: ( @dropdown-toggle-spacing-h / 2 );
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: @dropdown-toggle-spacing-v @dropdown-toggle-spacing-h;
 	}
 
 	// Text
