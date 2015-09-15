@@ -1,11 +1,26 @@
-// Variables and mixins
-@import 'variables.less';
-@import 'mixins.less';
+/**
+ *
+ *	Dropdown styles
+ *
+ *	================================================================
+ *
+ *	@since			1.4.0
+ *
+ */
 
-// Dropdown
-@import 'structure.less';
-@import 'animation.less';
-@import 'icons.less';
-@import 'toggle.less';
-@import 'menu.less';
-@import 'mobile.less';
+
+// Variables and mixins
+@import 'dropdown-variables';
+@import 'dropdown-mixins';
+
+// Structure
+@import 'layout/structure';
+
+// Components
+@import 'components/icons';
+@import 'components/toggle';
+@import 'components/menus';
+@import 'components/items';
+
+// Mobile
+@import 'layout/mobile';

@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.3.0
+ *	@version		1.4.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -3179,14 +3179,14 @@
 			// Classes
 			classes: {
 
-				//  Font Awesome icons
-				toggleIcon: 'fa fa-sort',
+				// Icons
+				toggleIcon: 'dropdown-icon-toggle',
 
-				backIcon: 'fa fa-arrow-left',
-				closeIcon: 'fa fa-remove',
+				backIcon: 'dropdown-icon-back',
+				closeIcon: 'dropdown-icon-close',
 
-				iconPrev: 'fa fa-angle-left',
-				iconNext: 'fa fa-angle-right'
+				iconPrev: 'dropdown-icon-prev',
+				iconNext: 'dropdown-icon-next'
 
 			},
 
@@ -3314,10 +3314,10 @@
 
 			focused:        'dropdown-focus',
 
-			pageOpen:       'dropdown-open',
+			pageOpen:       'dropdown-is-open',
 			pageOpenBefore: 'dropdown-before-open',
-			pageOpening:    'dropdown-opening',
-			pageClosing:    'dropdown-closing'
+			pageOpening:    'dropdown-is-opening',
+			pageClosing:    'dropdown-is-closing'
 
 		}
 

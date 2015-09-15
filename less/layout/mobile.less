@@ -1,15 +1,36 @@
-@media all and (max-width: @dropdown-mobile-width) {
+/**
+ *
+ *	Mobile styles
+ *
+ *	================================================================
+ *
+ *	@since			1.4.0
+ *
+ */
 
-	// Scrolling
-	html.dropdown-open,
-	html.dropdown-opening,
-	html.dropdown-closing {
 
-		&,
-		body {
-			overflow: hidden;
-		}
+/**
+ *	=Overlay
+ *	---------------------------------------------------------------- */
 
+.dropdown-overlay {
+	background: @dropdown-overlay-bg;
+	background: fade( @dropdown-overlay-bg, 50% );
+	opacity: 0;
+}
+
+
+/**
+ *	=Drawer
+ *	---------------------------------------------------------------- */
+
+@media all and (max-width: @dropdown-mobile-breakpoint) {
+
+	// Prevent page scrolling
+	.dropdown-is-open,
+	.dropdown-is-opening,
+	.dropdown-is-closing {
+		overflow: hidden;
 	}
 
 	// Menu position
@@ -46,7 +67,7 @@
 
 }
 
-@media all and (min-width: (@dropdown-mobile-width + 1px) ) {
+@media all and (min-width: (@dropdown-mobile-breakpoint + 1px) ) {
 
 	.dropdown-overlay {
 		display: none !important;

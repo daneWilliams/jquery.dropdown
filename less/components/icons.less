@@ -1,0 +1,100 @@
+/**
+ *
+ *	Icon styles
+ *
+ *	================================================================
+ *
+ *	@package		jQuery Dropdown
+ *
+ *	@since			1.4.0
+ *
+ */
+
+
+/**
+ *	=General
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon {
+	opacity: .5;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	width: @dropdown-icon-size;
+	line-height: inherit;
+	font-size: @dropdown-icon-size;
+}
+
+
+/**
+ *	=Toggle
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon-toggle {
+
+	-webkit-transform: scale(.7);
+	   -moz-transform: scale(.7);
+	        transform: scale(.7);
+
+	&:before {
+		content: '\25bc';
+		position: relative;
+	}
+
+}
+
+
+/**
+ *	=Back
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon-back {
+
+	// &larr;
+	&:before {
+		content: '\2190';
+	}
+
+}
+
+
+/**
+ *	=Close
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon-close {
+
+	// &times;
+	&:before {
+		content: '\00d7';
+	}
+
+}
+
+
+/**
+ *	=Previous
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon-prev {
+
+	// &larr;
+	&:before {
+		content: '\2190';
+	}
+
+}
+
+
+/**
+ *	=Next
+ *	---------------------------------------------------------------- */
+
+.dropdown-icon-next {
+
+	// &rarr;
+	&:before {
+		content: '\2192';
+	}
+
+}

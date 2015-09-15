@@ -1,0 +1,52 @@
+/**
+ *
+ *	Toggle styles
+ *
+ *	================================================================
+ *
+ *	@package		jQuery Dropdown
+ *
+ *	@since			1.4.0
+ *
+ */
+
+
+/**
+ *	=General
+ *	---------------------------------------------------------------- */
+
+.dropdown-toggle {
+
+	.dropdown-box( @dropdown-toggle-bg );
+
+	color: @dropdown-toggle-color;
+	text-decoration: none;
+	padding: @dropdown-toggle-spacing-v @dropdown-toggle-spacing-h;
+
+	&:hover {
+		background: @dropdown-toggle-hover-bg;
+		color: @dropdown-toggle-hover-color;
+		text-decoration: none;
+	}
+
+	// Icon
+	.dropdown-icon {
+		float: right;
+		margin-left: ( @dropdown-toggle-spacing-h / 2 );
+	}
+
+	// Text
+	.dropdown-text {
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+}
+
+// Open
+.dropdown-open .dropdown-toggle {
+	background: @dropdown-toggle-open-bg;
+	color: @dropdown-toggle-open-color;
+}

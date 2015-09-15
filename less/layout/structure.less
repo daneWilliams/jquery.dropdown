@@ -1,9 +1,31 @@
 /**
+ *
+ *	Structural styles
+ *
+ *	================================================================
+ *
+ *	@since			1.4.0
+ *
+ */
+
+
+/**
+ *	=General
+ *	---------------------------------------------------------------- */
+
+.dropdown {
+	font-size: @dropdown-size;
+	line-height: @dropdown-line-height;
+}
+
+
+/**
  *	=Positioning
  *	---------------------------------------------------------------- */
 
 .dropdown,
 .dropdown-menu-container,
+.dropdown-header,
 .dropdown-list,
 .dropdown-toggle,
 .dropdown-title {
@@ -62,13 +84,19 @@
 	z-index: 1;
 }
 
-// Values
+// Containers
 .dropdown-overlay,
 .dropdown-mask {
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
+}
+
+.dropdown-menu-container,
+.dropdown-child,
+.dropdown-parent {
+	width: 100%;
 }
 
 .dropdown-menu-wrapper {
@@ -90,14 +118,7 @@
 .dropdown-menu {
 	top: 0;
 	left: 0;
-}
-
-.dropdown-close {
-	right: 0;
-}
-
-.dropdown-back {
-	left: 0;
+	width: inherit;
 }
 
 
@@ -108,6 +129,7 @@
 .dropdown,
 .dropdown-toggle {
 	display: inline-block;
+	max-width: 100%;
 }
 
 .dropdown-menu-wrapper,
@@ -121,7 +143,7 @@
 	display: none;
 }
 
-.dropdown.dropdown-open .dropdown-menu-wrapper,
+.dropdown-open .dropdown-menu-wrapper,
 .dropdown-animating .dropdown-mask,
 .dropdown-menu-open,
 .dropdown-main-menu,
@@ -133,94 +155,17 @@
 
 
 /**
- *	=Dimensions
+ *	=Animation
  *	---------------------------------------------------------------- */
 
-// Widths
-.dropdown,
-.dropdown-toggle {
-	max-width: 100%;
-}
-
-.dropdown-menu {
-	width: inherit;
-}
-
-.dropdown-menu-wrapper {
-	min-width: @dropdown-width;
-}
-
+.dropdown-overlay,
+.dropdown-menu-wrapper,
 .dropdown-menu-container,
-.dropdown-child,
-.dropdown-parent {
-	width: 100%;
+.dropdown-menu {
+	-webkit-transform: translate3d( 0, 0, 0 );
+	-webkit-backface-visibility: hidden;
 }
 
-// Heights
-.dropdown-toggle {
-	height: auto;
-	line-height: 28px;
-}
-
-// Spacing
-.dropdown-toggle {
-	padding: 6px 38px 6px 14px;
-}
-
-.dropdown-menu-wrapper {
-	padding: @dropdown-menu-spacing 0;
-}
-
-.dropdown-divider {
-	margin: @dropdown-menu-spacing 0;
-}
-
-// Font sizes
-.dropdown {
-	font-size: 14px;
-}
-
-
-/**
- *	=Clearfix
- *	---------------------------------------------------------------- */
-
-.dropdown-item,
-.dropdown-header {
-
-	*zoom: 1;
-
-	&:before,
-	&:after {
-		content: '';
-		display: table;
-	}
-
-	&:after {
-		clear: both;
-	}
-
-}
-
-
-/**
- *	=Menus
- *	---------------------------------------------------------------- */
-
-.dropdown-menu-wrapper {
-	overflow: hidden;
+.dropdown-open .dropdown-menu-wrapper {
 	opacity: 0;
-}
-
-// Lists
-.dropdown-list,
-.dropdown-item {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.dropdown-list {
-	overflow-x: hidden;
-	overflow-y: auto;
 }

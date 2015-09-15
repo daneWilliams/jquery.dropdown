@@ -1,0 +1,62 @@
+/**
+ *
+ *	Dropdown mixins
+ *
+ *	================================================================
+ *
+ *	@since			1.4.0
+ *
+ */
+
+
+/**
+ *	=Utilities
+ *	---------------------------------------------------------------- */
+
+// Border radius
+.dropdown-border-radius( @radius: @dropdown-border-radius ) {
+	-webkit-border-radius: @radius;
+	   -moz-border-radius: @radius;
+	        border-radius: @radius;
+}
+
+// Box shadow
+.dropdown-box-shadow( @shadow: @dropdown-box-shadow ) {
+	-webkit-box-shadow: @dropdown-box-shadow;
+	   -moz-box-shadow: @dropdown-box-shadow;
+	        box-shadow: @dropdown-box-shadow;
+}
+
+
+/**
+ *	=Box
+ *	---------------------------------------------------------------- */
+
+.dropdown-box( @background: @dropdown-bg ) {
+
+	background: @background;
+
+	.dropdown-box-shadow();
+	.dropdown-border-radius();
+
+}
+
+
+/**
+ *	=Button
+ *	---------------------------------------------------------------- */
+
+.dropdown-button() {
+
+	background: @dropdown-button-bg;
+	color: @dropdown-button-color;
+	text-decoration: none;
+	padding: @dropdown-item-spacing-v @dropdown-item-spacing-h;
+
+	&:hover {
+		background: @dropdown-button-hover-bg;
+		color: @dropdown-button-hover-color;
+		text-decoration: none;
+	}
+
+}
