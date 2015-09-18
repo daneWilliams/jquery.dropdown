@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.5.0
+ *	@version		1.5.1
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014-2015 Dane Williams
@@ -15,15 +15,6 @@
  *
  */
 
-/**
- *
- *	Structural styles
- *
- *	================================================================
- *
- *	@since			1.4.0
- *
- */
 /**
  *	=General
  *	---------------------------------------------------------------- */
@@ -150,7 +141,7 @@
   -webkit-backface-visibility: hidden;
 }
 .dropdown-open .dropdown-menu-wrapper {
-  opacity: 0;
+  opacity: 1;
 }
 /**
  *
