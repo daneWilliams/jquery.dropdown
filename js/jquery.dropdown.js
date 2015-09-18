@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.5.1
+ *	@version		1.6.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014-2015 Dane Williams
@@ -682,7 +682,7 @@
 			}
 
 			// Parent, open menu
-			if ( item.selectable && item.children.menu ) {
+			if ( opt.nested && item.selectable && item.children.menu ) {
 
 				self.openMenu( item.children.menu );
 				return;
@@ -991,7 +991,7 @@
 			var parent = self.getItem( item.parent );
 
 			// No parent, bail
-			if ( !parent )
+			if ( !parent || !opt.nested )
 				return false;
 
 			// Update parent
@@ -1318,7 +1318,15 @@
 			var added = [];
 
 			// Get the menu
-			menu = self.getMenu( menu );
+			if ( !opt.nested ) {
+
+				menu = self.getMenu();
+
+			} else {
+
+				menu = self.getMenu( menu );
+
+			}
 
 			// Loop through the items
 			$.each( items, function( i, item ) {
@@ -1371,12 +1379,20 @@
 				// Any child items?
 				if ( item.children.items && item.children.items.length ) {
 
-					// Add new menu
-					if ( !item.children.menu ) {
+					// Set menu
+					if ( !opt.nested ) {
 
-						var submenu = self.addMenu([{ parent: item.uid, title: item.children.title }]);
+						item.children.menu = menu;
 
-						item.children.menu = submenu[0].uid;
+					} else {
+
+						if ( !item.children.menu ) {
+
+							var submenu = self.addMenu([{ parent: item.uid, title: item.children.title }]);
+
+							item.children.menu = submenu[0].uid;
+
+						}
 
 					}
 
@@ -1393,7 +1409,27 @@
 							}
 						} );
 
+						if ( !opt.nested )
+							parent.divider = {
+								top: true
+							};
+
 						item.children.items.unshift( parent );
+
+					} else {
+
+						// Add label
+						if ( !opt.nested ) {
+
+							if ( !item.children.items[0].label )
+								item.children.items[0].label = item.text;
+
+							if ( !item.children.items[0].divider )
+								item.children.items[0].divider = { top: false, bottom: false };
+
+							item.children.items[0].divider.top = true;
+
+						} 
 
 					}
 
@@ -1413,10 +1449,16 @@
 
 					});
 
-				}
+					// Add element
+					if ( opt.nested )
+						item.elem = self._buildItem( item );
 
-				// Get element
-				item.elem = self._buildItem( item );
+				} else {
+
+					// Add element
+					item.elem = self._buildItem( item );
+
+				}
 
 			});
 
