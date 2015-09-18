@@ -10,7 +10,7 @@
  *	@version		1.5.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
- *	@copyright		2014 Dane Williams
+ *	@copyright		2014-2015 Dane Williams
  *	@license		MIT License
  *
  */
@@ -1369,7 +1369,7 @@
 				}
 
 				// Any child items?
-				if ( item.children.items.length ) {
+				if ( item.children.items && item.children.items.length ) {
 
 					// Add new menu
 					if ( !item.children.menu ) {
@@ -1377,6 +1377,23 @@
 						var submenu = self.addMenu([{ parent: item.uid, title: item.children.title }]);
 
 						item.children.menu = submenu[0].uid;
+
+					}
+
+					// Add parent
+					if ( item.value || item.href || opt.selectParents ) {
+
+						var parent = $.extend( {}, item, { 
+							uid: false, 
+							menu: false,
+							parent: item.uid, 
+							children: {}, 
+							divider: {
+								bottom: true
+							}
+						} );
+
+						item.children.items.unshift( parent );
 
 					}
 
@@ -2176,8 +2193,38 @@
 
 			}
 
+			// Add top divider
+			if ( item.divider.top || true == item.divider ) {
+
+				var $dividerTop = $( tpl.menuDivider ).addClass( cls.menuDivider );
+
+				menu.elem.children( '.' + cls.core.menuList ).append( $dividerTop );
+
+			}
+
+			// Add label
+			if ( item.label ) {
+
+				var $label     = $( tpl.menuLabel ).addClass( cls.menuLabel );
+				var $labelText = $( tpl.menuText ).addClass( cls.menuText ).appendTo( $label );
+
+				$labelText.html( item.label );
+
+				menu.elem.children( '.' + cls.core.menuList ).append( $label );
+
+			}
+
 			// Add to menu
 			menu.elem.children( '.' + cls.core.menuList ).append( $item );
+
+			// Add bottom divider
+			if ( item.divider.bottom || true == item.divider ) {
+
+				var $dividerBottom = $( tpl.menuDivider ).addClass( cls.menuDivider );
+
+				menu.elem.children( '.' + cls.core.menuList ).append( $dividerBottom );
+
+			}
 
 			return $item;
 
@@ -2318,8 +2365,9 @@
 
 					var children = self._populateSelect( $this );
 
-					item.children.items = []
+					item.children.items = [];
 
+					// Add children
 					$.each( children, function( i, child ) {
 
 						item.children.items.push( $.extend( {}, child, { parent: item.uid } ) );
@@ -3210,6 +3258,12 @@
 					menu: false,
 					title: '',
 					items: false
+				},
+
+				label: false,
+				divider: {
+					top: false,
+					bottom: false
 				}
 
 			},
@@ -3300,6 +3354,7 @@
 
 			// Nesting
 			nested: true,
+			selectParents: false,
 
 			// Multiple
 			multiple: false,
@@ -3366,7 +3421,7 @@
 			menuMask:      '<div />',
 			menuList:      '<ul role="menu" />',
 			menuItem:      '<li role="presentation" />',
-			menuHeading:   '<li role="presentation" />',
+			menuLabel:     '<li role="presentation" />',
 			menuDivider:   '<li role="presentation" />',
 			menuLink:      '<a href="#" role="menuitem" />',
 			menuText:      '<span />',
@@ -3411,7 +3466,7 @@
 			menuContainer:  'dropdown-menu-container',
 			menuHeader:     'dropdown-header',
 			menuTitle:      'dropdown-title',
-			menuHeading:    'dropdown-heading',
+			menuLabel:      'dropdown-label',
 			menuDivider:    'dropdown-divider',
 			menuMask:       'dropdown-mask',
 			menuParent:     'dropdown-parent',

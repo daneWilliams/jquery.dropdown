@@ -10,11 +10,20 @@
  *	@version		1.5.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
- *	@copyright		2014 Dane Williams
+ *	@copyright		2014-2015 Dane Williams
  *	@license		MIT License
  *
  */
 
+/**
+ *
+ *	Structural styles
+ *
+ *	================================================================
+ *
+ *	@since			1.4.0
+ *
+ */
 /**
  *	=General
  *	---------------------------------------------------------------- */
@@ -149,8 +158,6 @@
  *
  *	================================================================
  *
- *	@package		jQuery Dropdown
- *
  *	@since			1.4.0
  *
  */
@@ -208,8 +215,6 @@
  *
  *	================================================================
  *
- *	@package		jQuery Dropdown
- *
  *	@since			1.4.0
  *
  */
@@ -258,8 +263,6 @@
  *	Menu styles
  *
  *	================================================================
- *
- *	@package		jQuery Dropdown
  *
  *	@since			1.4.0
  *
@@ -336,12 +339,38 @@
   right: 0;
 }
 /**
+ *	=Labels
+ *	---------------------------------------------------------------- */
+.dropdown-label {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 11px;
+  color: #aaaaaa;
+  padding: 5px 15px;
+  margin: 10px 0 0;
+}
+.dropdown-label:first-child {
+  margin-top: 5px;
+}
+/**
+ *	=Divider
+ *	---------------------------------------------------------------- */
+.dropdown-divider {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 5px 0;
+}
+.dropdown-divider:first-child,
+.dropdown-divider:last-child {
+  display: none;
+}
+.dropdown-divider:first-child + .dropdown-label {
+  margin-top: 5px;
+}
+/**
  *
  *	Item styles
  *
  *	================================================================
- *
- *	@package		jQuery Dropdown
  *
  *	@since			1.4.0
  *
