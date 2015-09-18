@@ -7,7 +7,7 @@
  *
  *	================================================================
  *
- *	@version		1.4.1
+ *	@version		1.5.0
  *
  *	@author			Dane Williams <dane@danewilliams.uk>
  *	@copyright		2014 Dane Williams
@@ -653,7 +653,7 @@
 
 		/**
 		 *
-		 *	Select an item
+		 *	Select an item or menu
 		 *
 		 *	================================================================ */
 
@@ -668,8 +668,18 @@
 			// Get the item
 			item = self.getItem( item );
 
-			if ( !item )
+			// Get a menu
+			if ( !item ) {
+
+				var menu = self.getMenu( item );
+
+				// Open menu
+				if ( menu )
+					self.openMenu( menu );
+
 				return;
+
+			}
 
 			// Parent, open menu
 			if ( item.selectable && item.children.menu ) {
@@ -701,6 +711,80 @@
 
 			// Callback
 			self._beforeSelect( item, previous );
+
+			// Select an item
+			self.selectItem( item, previous );
+
+			// Select/deselect previous
+			if ( previous ) {
+
+				if ( !opt.multiple ) {
+
+					previous.selected = false;
+					previous.elem.removeClass( cls.selected );
+
+				}
+
+				// Select/deselect previous parent
+				self.selectParent( previous );
+
+			}
+
+			// Update toggle text
+			if ( opt.autoToggle ) {
+
+				if ( !inst.selected || !inst.selected.length ) {
+
+					if ( opt.multiple )
+						self.toggleTextMulti();
+
+					else
+						self.toggleText();
+
+				} else {
+
+					if ( opt.multiple )
+						self.toggleTextMulti( item.text );
+
+					else
+						self.toggleText( item.text );
+
+				}
+
+			}
+
+			// Close the dropdown
+			if ( !opt.multiple ) {
+
+				self.close();
+
+			}
+
+			// Callback
+			self._afterSelect( item, previous );
+
+		},
+
+
+		/**
+		 *
+		 *	Select an item
+		 *
+		 *	================================================================ */
+
+		selectItem: function( item ) {
+
+			var self = this;
+			var inst = self.instance,
+			    opt  = self.options,
+			    elem = self.elements,
+			    cls  = self.classes;
+
+			// Get the item
+			item = self.getItem( item );
+
+			if ( !item )
+				return;
 
 			if ( opt.multiple ) {
 
@@ -734,14 +818,6 @@
 
 			} else {
 
-				// Deselect
-				if ( previous ) {
-
-					previous.selected = false;
-					previous.elem.removeClass( cls.selected );
-
-				}
-
 				// Select
 				inst.selected = item.uid;
 
@@ -756,44 +832,88 @@
 			// Select/deselect parent
 			self.selectParent( item );
 
-			if ( previous ) {
+		},
 
-				self.selectParent( previous );
+
+		/**
+		 *
+		 *	Select item(s) by value(s)
+		 *
+		 *	================================================================ */
+
+		selectValue: function( values, clear ) {
+
+			var self = this;
+			var inst = self.instance,
+			    opt  = self.options,
+			    elem = self.elements,
+			    cls  = self.classes;
+
+			if ( !values )
+				values = [];
+
+			if ( ! ( values instanceof Array ) )
+				values = [ values ];
+
+			// Deselect all
+			if ( clear ) {
+
+				for ( var uid in inst.items )
+					self.deselect( uid );
 
 			}
 
-			// Update toggle text
-			if ( opt.autoToggle ) {
+			// Multiple
+			if ( opt.multiple ) {
 
-				if ( !elem.dropdown.find( '.' + cls.core.selected ).length ) {
+				// Deselect all
+				if ( clear ) {
 
-					if ( opt.multiple )
+					if ( opt.autoToggle )
 						self.toggleTextMulti();
-
-					else
-						self.toggleText();
-
-				} else {
-
-					if ( opt.multiple )
-						self.toggleTextMulti( item.text );
-
-					else
-						self.toggleText( item.text );
 
 				}
 
+				if ( !values.length )
+					return;
+
+				$.each( values, function( i, value ) {
+
+					for ( var uid in inst.items ) {
+
+						if ( self.value( uid ) == value ) {
+
+							self.selectItem( uid );
+
+							if ( opt.autoToggle )
+								self.toggleTextMulti( self.text( uid ) );
+
+						}
+
+					}
+
+				});
+
+				return;
+
 			}
 
-			// Close the dropdown
-			if ( !opt.multiple ) {
+			$.each( values, function( i, value ) {
 
-				self.close();
+				for ( var uid in inst.items ) {
 
-			}
+					if ( self.value( uid ) == value ) {
 
-			// Callback
-			self._afterSelect( item, previous );
+						self.selectItem( uid );
+
+						if ( opt.autoToggle )
+							self.toggleText( self.text( uid ) );
+
+					}
+
+				}
+
+			});
 
 		},
 
@@ -984,6 +1104,27 @@
 
 		/**
 		 *
+		 *	Get item text
+		 *
+		 *	================================================================ */
+
+		text: function( item ) {
+
+			var self = this;
+
+			if ( !item )
+				return;
+
+			item = self.getItem( item );
+
+			if ( item )
+				return item.text;
+
+		},
+
+
+		/**
+		 *
 		 *	Get selected item, or check if item is selected
 		 *
 		 *	================================================================ */
@@ -1152,7 +1293,7 @@
 
 			}
 
-			if ( !typeof menu != 'object' )
+			if ( typeof menu != 'object' )
 				return false;
 
 			return menu;
@@ -1380,13 +1521,13 @@
 			if ( !menu )
 				return;
 
+			// Store the original
+			if ( !menu.elem.data('dropdown-title') )
+				menu.elem.data('dropdown-title', $title.html() );
+
 			var $title = menu.elem.find( '.' + cls.core.menuTitle );
 
 			if ( text ) {
-
-				// Store the original
-				if ( !menu.elem.data('dropdown-title') )
-					menu.elem.data('dropdown-title', $title.html() );
 
 				$title.html( text );
 
@@ -1410,11 +1551,11 @@
 			var self = this;
 			var elem = self.elements;
 
-			if ( text ) {
+			// Store the original
+			if ( !elem.toggleButton.data( 'dropdown-text' ) )
+				elem.toggleButton.data( 'dropdown-text', elem.toggleText.text() );
 
-				// Store the original
-				if ( !elem.toggleButton.data( 'dropdown-text' ) )
-					elem.toggleButton.data( 'dropdown-text', elem.toggleText.text() );
+			if ( text ) {
 
 				elem.toggleText.html( text );
 
@@ -1439,11 +1580,11 @@
 			var elem = self.elements;
 			var vals = elem.toggleButton.data( 'dropdown-text-multi' );
 
-			if ( text ) {
+			// Store the original
+			if ( !elem.toggleButton.data( 'dropdown-text' ) )
+				elem.toggleButton.data( 'dropdown-text', elem.toggleText.text() );
 
-				// Store the original
-				if ( !elem.toggleButton.data( 'dropdown-text' ) )
-					elem.toggleButton.data( 'dropdown-text', elem.toggleText.text() );
+			if ( text ) {
 
 				// Check for values
 				if ( !vals )
@@ -1464,7 +1605,7 @@
 				}
 
 				// No values
-				if ( !vals ) {
+				if ( !vals || !vals.length ) {
 
 					var str = elem.toggleButton.data( 'dropdown-text' );
 
@@ -1556,6 +1697,13 @@
 				var item = $(this).data( 'dropdown-uid' );
 
 				self.select( item );
+
+			});
+
+			// Sync with <select />
+			self.$elem.on( 'change', function() {
+
+				self.selectValue( self.$elem.val(), true );
 
 			});
 
@@ -1937,6 +2085,8 @@
 			}
 
 			// Set toggle text
+			elem.toggleButton.data( 'dropdown-text', opt.toggleText )
+
 			elem.toggleText.html( opt.toggleText );
 
 			// Add to plugin
