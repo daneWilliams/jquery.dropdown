@@ -1,0 +1,86 @@
+/**
+ *
+ *	=Mobile styles
+ *
+ *	================================================================ */
+
+@media screen and (max-width: @dropdown-mobile-breakpoint) {
+
+
+	/**
+	 *	=Overlays
+	 *	---------------------------------------------------------------- */
+
+	.dropdown-overlay {
+		z-index: -1;
+		transition: opacity .2s linear;
+	}
+
+	.dropdown-opening .dropdown-overlay,
+	.dropdown-open .dropdown-overlay {
+		z-index: 101;
+		opacity: 1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+
+	/**
+	 *	=Containers
+	 *	---------------------------------------------------------------- */
+
+	.dropdown-menu-wrapper {
+		width: auto !important;
+		height: auto !important;
+		position: fixed !important;
+		top: @dropdown-mobile-spacing;
+		bottom: @dropdown-mobile-spacing;
+		left: @dropdown-mobile-spacing;
+		right: @dropdown-mobile-spacing;
+		margin: 0;
+		border: 0;
+	}
+
+	.dropdown-above,
+	.dropdown-below {
+
+		.dropdown-menu-wrapper {
+			top: @dropdown-mobile-spacing;
+			bottom: @dropdown-mobile-spacing;
+			margin: 0;
+		}
+
+	}
+
+	.dropdown-menu-container {
+		width: 100%;
+	}
+
+
+	/**
+	 *	=Header
+	 *	---------------------------------------------------------------- */
+
+	.dropdown-menu-main .dropdown-header {
+		display: block;
+	}
+
+	// Close
+	.dropdown-close {
+		display: block;
+	}
+
+
+} // End mobile styles
+
+
+// Hide overlay
+@media all and (min-width: (@dropdown-mobile-breakpoint + 1px) ) {
+
+	.dropdown-overlay {
+		display: none !important;
+	}
+
+}

@@ -1,0 +1,127 @@
+/**
+ *
+ *	=Structure
+ *
+ *	================================================================ */
+
+
+/**
+ *	=General
+ *	---------------------------------------------------------------- */
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+}
+ 
+
+/**
+ *	=Toggle
+ *	---------------------------------------------------------------- */
+
+.dropdown-toggle {
+
+	background: @dropdown-toggle-bg;
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
+	font-size: @dropdown-toggle-size;
+	line-height: ( @dropdown-toggle-height / 2 );
+	padding: ( @dropdown-toggle-height / 4 ) @dropdown-toggle-spacing;
+	margin: 0;
+	box-shadow: @dropdown-toggle-shadow;
+
+	&:after {
+		content: '';
+		opacity: .6;
+		height: 2px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: @dropdown-toggle-spacing;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		border-top: 4px solid;
+	}
+
+	.dropdown-text {
+		display: inline-block;
+	}
+
+}
+ 
+
+/**
+ *	=Containers
+ *	---------------------------------------------------------------- */
+
+.dropdown-menu-wrapper {
+	background: @dropdown-menu-bg;
+	overflow: hidden;
+	box-shadow: @dropdown-menu-shadow;
+}
+
+.dropdown-menu-container {
+	position: relative;
+	width: @dropdown-menu-width;
+	max-width: 100%;
+}
+
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: inherit;
+}
+
+.dropdown-menu-main,
+.dropdown-menu-open {
+	display: block;
+}
+
+.dropdown-menu-open {
+	position: relative;
+}
+
+// Wrapper
+.dropdown-menu-wrapper {
+	position: absolute;
+	z-index: 999;
+	display: none;
+	opacity: 0;
+}
+
+.dropdown-below .dropdown-menu-wrapper {
+	top: 100%;
+	bottom: auto;
+	margin: 3px 0 0;
+}
+
+.dropdown-above .dropdown-menu-wrapper {
+	bottom: 100%;
+	top: auto;
+	margin: 0 0 3px;
+}
+
+// Mask
+.dropdown-mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	display: none;
+}
+
+.dropdown-animating .dropdown-mask {
+	display: block;
+}
+
+// Overlay
+.dropdown-overlay {
+	background: @dropdown-overlay-bg;
+	position: fixed;
+	opacity: 0;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>jQuery Dropdown</title>
+
+	<meta charset="utf8" />
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="./css/dropdown.css" />
+
+	<style type="text/css">
+		body { background: #f8f8f8; padding: 0; margin: 0; font-family: 'Open Sans', sans-serif; }
+		main { max-width: 800px; padding: 0 20px; margin: 0 auto; }
+		header { margin: 50px 0; }
+		h1 { font-size: 40px; font-weight: 300; margin: 0; padding: 0 0 10px; border-bottom: 1px solid #aaa; }
+		h3 { font-size: 18px; font-weight: 400; margin: 50px 0 10px; }
+		section { margin: 50px 0; }
+		a { color: #0d659b; }
+	</style>
+
+</head>
+
+<body>
+
+	<main>
+
+		<header>
+			<h1>jQuery Dropdown</h1>
+		</header>
+
+		<section>
+			<h3>Select</h3>
+			<select>
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+			</select>
+		</section>
+
+		<section>
+			<h3>Select (multi)</h3>
+			<select multiple="multiple">
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+			</select>
+		</section>
+
+		<section>
+			<h3>Select (nested)</h3>
+			<select>
+				<optgroup label="Group 1">
+					<option>Option 1.1</option>
+					<option>Option 1.2</option>
+					<option>Option 1.3</option>
+				</optgroup>
+				<optgroup label="Group 2">
+					<option>Option 2.1</option>
+					<option>Option 2.2</option>
+					<option>Option 2.3</option>
+				</optgroup>
+				<optgroup label="Group 3">
+					<option>Option 3.1</option>
+					<option>Option 3.2</option>
+					<option>Option 3.3</option>
+				</optgroup>
+			</select>
+		</section>
+
+		<section>
+			<h3>List</h3>
+			<ul>
+				<li>Option 1</li>
+				<li>Option 2</li>
+				<li>Option 3</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>List (links)</h3>
+			<ul>
+				<li><a href="#option-1">Option 1</a></li>
+				<li><a href="#option-2">Option 2</a></li>
+				<li><a href="#option-3">Option 3</a></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>List (nested)</h3>
+			<ul>
+				<li>
+					Group 1
+					<ul>
+						<li>Option 1.1</li>
+						<li>Option 1.2</li>
+						<li>Option 1.3</li>
+					</ul>
+				</li>
+				<li>
+					Group 2
+					<ul>
+						<li>Option 2.1</li>
+						<li>Option 2.2</li>
+						<li>Option 2.3</li>
+					</ul>
+				</li>
+				<li>
+					Group 3
+					<ul>
+						<li>Option 3.1</li>
+						<li>Option 3.2</li>
+						<li>Option 3.3</li>
+					</ul>
+				</li>
+				<li>Option 4</li>
+			</ul>
+		</section>
+
+	</main>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="./js/jquery.dropdown.js"></script>
+
+	<script type="text/javascript">
+		(function($) {
+
+			$(function() {
+
+				$('select, ul').dropdown();
+
+			});
+
+		}(jQuery));
+	</script>
+
+</body>
+
+</html>
