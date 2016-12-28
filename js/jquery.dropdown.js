@@ -2444,6 +2444,7 @@
 		_afterClose: function() {
 
 			var self = this,
+			    opt  = self.opt,
 			    inst = self.inst,
 			    elem = self.elems,
 			    cls  = self.cls;
