@@ -121,6 +121,52 @@
 
 
 /**
+ *	=Labels
+ *	---------------------------------------------------------------- */
+
+.dropdown-label {
+
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: @dropdown-label-size;
+	color: @dropdown-label-color;
+	padding: @dropdown-menu-spacing @dropdown-link-spacing;
+	margin: ( @dropdown-menu-spacing * 2 ) 0 0;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+}
+
+
+/**
+ *	=Dividers
+ *	---------------------------------------------------------------- */
+
+.dropdown-divider {
+
+	border-bottom: 1px solid @dropdown-border-color;
+	margin: @dropdown-menu-spacing 0;
+
+	&:first-child,
+	&:last-child {
+		display: none;
+	}
+
+	// Label
+	+ .dropdown-label {
+		margin-top: @dropdown-menu-spacing;
+	}
+
+	&:first-child + .dropdown-label {
+		margin-top: 0;
+	}
+
+}
+
+
+/**
  *	=Items
  *	---------------------------------------------------------------- */
 

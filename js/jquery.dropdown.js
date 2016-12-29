@@ -2,14 +2,13 @@
  *
  *	jQuery Dropdown
  *
- *	http://danewilliams.uk/projects/jquery-dropdown
  *	https://github.com/daneWilliams/jquery.dropdown
  *
  *	================================================================
  *
- *	@version		2.0.0
+ *	@version		2.0.1
  *
- *	@author			Dane Williams <dane@danewilliams.uk>
+ *	@author			Dane Williams (danewilliams.uk)
  *	@copyright		2014-2016 Dane Williams
  *	@license		MIT License
  *
@@ -446,7 +445,9 @@
 
 				// Select parent
 				parent.selected = true;
-				parent.elem.addClass( self.cls.selected );
+
+				if ( parent.elem )
+					parent.elem.addClass( self.cls.selected );
 
 			} else {
 
@@ -469,13 +470,17 @@
 
 					// Select parent
 					parent.selected = true;
-					parent.elem.addClass( self.cls.selected );
+
+					if ( parent.elem )
+						parent.elem.addClass( self.cls.selected );
 
 				} else {
 
 					// Deselect parent
 					parent.selected = false;
-					parent.elem.removeClass( self.cls.selected );
+
+					if ( parent.elem )
+						parent.elem.removeClass( self.cls.selected );
 
 				}
 
@@ -1199,6 +1204,10 @@
 
 			// Set menu
 			item.menu = ( item.menu ? item.menu : menu.uid );
+
+			// Add top divider
+			if ( null == item.divider && item.label )
+				item.divider = 'top';
 
 			// Add to plugin
 			inst.items[ item.uid ] = item;
@@ -1999,11 +2008,14 @@
 			if ( !menu )
 				return false;
 
+			var $menu = menu.elem.children( '.' + self._cls.menuList );
+
 			// Create elements
 			var elems = {};
 
 			var names = [ 
-				'menuItem', 'menuLink', 'menuText'
+				'menuItem', 'menuLink', 'menuText',
+				'menuDivider', 'menuLabel'
 			];
 
 			$.each( names, function( i, name ) {
@@ -2049,10 +2061,12 @@
 
 			} else {
 
-				elems.menuLink.appendTo( $item );
-				elems.menuText.appendTo( elems.menuLink );
+				var $text = elems.menuText.clone();
 
-				elems.menuText.html( item.text );
+				elems.menuLink.appendTo( $item );
+				$text.appendTo( elems.menuLink );
+
+				$text.html( item.text );
 
 			}
 
@@ -2060,8 +2074,29 @@
 			if ( item.url )
 				elems.menuLink.attr( 'href', item.url );
 
+			// Add top divider
+			if ( 'both' == item.divider || 'top' == item.divider )
+				elems.menuDivider.clone().appendTo( $menu );
+
+			// Add label
+			if ( item.label ) {
+
+				var $label  = elems.menuLabel.clone();
+				var $labelT = elems.menuText.clone();
+
+				$labelT.appendTo( $label );
+				$labelT.html( item.label );
+
+				$menu.append( $label );
+
+			}
+
 			// Add to menu
-			menu.elem.children( '.' + self._cls.menuList ).append( $item );
+			$menu.append( $item );
+
+			// Add bottom divider
+			if ( 'both' == item.divider || 'bottom' == item.divider )
+				elems.menuDivider.clone().appendTo( $menu );
 
 			return $item;
 
@@ -2995,6 +3030,9 @@
 			menu:   false,
 			parent: false,
 
+			label: '',
+			divider: null,
+
 			children: {
 				menu:  false,
 				title: '',
@@ -3213,7 +3251,7 @@
 		keyboard: true,
 
 		// Nested
-		nested: true,
+		nested: false,
 
 		// Multiple
 		multi:     false,
