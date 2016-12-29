@@ -6,7 +6,7 @@
  *
  *	================================================================
  *
- *	@version		2.0.1
+ *	@version		2.0.2
  *
  *	@author			Dane Williams (danewilliams.uk)
  *	@copyright		2014-2016 Dane Williams
@@ -1453,52 +1453,67 @@
 
 			}
 
+			// Check for mobile
+			var mobile = ( elem.menuWrapper.css('position') == 'fixed' ? true : false );
+
 			// Get total height
 			collision.height = ( resize.menu.height + resize.wrapper.diff.height );
 
-			// Collision checks
-			if ( opt.collision ) {
+			if ( mobile ) {
 
-				var space = 0;
+				if ( resize.menu.height > resize.wrapper.height ) {
 
-				// Exceeds vertical space
-				if ( inst.above ) {
+					collision.menu.height = ( resize.wrapper.height - resize.wrapper.diff.height );
 
-					if ( collision.height > collision.space.top ) {
+				}
 
-						space = collision.space.above;
+			} else {
 
-						// Change position
-						if ( collision.space.bottom > collision.space.top ) {
+				// Collision checks
+				if ( opt.collision ) {
 
-							collision.position.y  = 'bottom';
-							space = collision.space.below;
+					var space = 0;
+
+					// Exceeds vertical space
+					if ( inst.above ) {
+
+						if ( collision.height > collision.space.top ) {
+
+							space = collision.space.top;
+
+							// Change position
+							if ( collision.space.bottom > collision.space.top ) {
+
+								collision.position.y  = 'bottom';
+								space = collision.space.bottom;
+
+							}
+
+						}
+
+					} else {
+
+						if ( collision.height > collision.space.bottom ) {
+
+							space = collision.space.bottom;
+
+							// Change position
+							if ( collision.space.top > collision.space.bottom ) {
+
+								collision.position.y  = 'top';
+								space = collision.space.top;
+
+							}					
 
 						}
 
 					}
 
-				} else {
+					if ( space && collision.height > space ) {
 
-					if ( collision.height > collision.space.bottom ) {
-
-						space = collision.space.below;
-
-						// Change position
-						if ( collision.space.top > collision.space.bottom ) {
-
-							collision.position.y  = 'top';
-							space = collision.space.above;
-
-						}					
+						collision.menu.height = ( space - collision.wrapper.diff.height );
 
 					}
-
-				}
-
-				if ( space && collision.height > space ) {
-
-					collision.menu.height = ( space - collision.wrapper.diff.height );
 
 				}
 
@@ -3251,7 +3266,7 @@
 		keyboard: true,
 
 		// Nested
-		nested: false,
+		nested: true,
 
 		// Multiple
 		multi:     false,
