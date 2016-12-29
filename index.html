@@ -7,18 +7,9 @@
 
 	<meta charset="utf8" />
 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="./css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="./css/dropdown.css" />
-
-	<style type="text/css">
-		body { background: #f8f8f8; padding: 0; margin: 0; font-family: 'Open Sans', sans-serif; }
-		main { max-width: 800px; padding: 0 20px; margin: 0 auto; }
-		header { margin: 50px 0; }
-		h1 { font-size: 40px; font-weight: 300; margin: 0; padding: 0 0 10px; border-bottom: 1px solid #aaa; }
-		h3 { font-size: 18px; font-weight: 400; margin: 50px 0 10px; }
-		section { margin: 50px 0; }
-		a { color: #0d659b; }
-	</style>
 
 </head>
 
@@ -27,98 +18,138 @@
 	<main>
 
 		<header>
-			<h1>jQuery Dropdown</h1>
+			<h1>jQuery Dropdown <small>v2.0.3</small></h1>
 		</header>
 
 		<section>
-			<h3>Select</h3>
-			<select>
-				<option>Option 1</option>
-				<option>Option 2</option>
-				<option>Option 3</option>
-			</select>
-		</section>
 
-		<section>
-			<h3>Select (multi)</h3>
-			<select multiple="multiple">
-				<option>Option 1</option>
-				<option>Option 2</option>
-				<option>Option 3</option>
-			</select>
-		</section>
+			<article id="intro" class="content">
+				<h3>Examples</h3>
+				<p>Each example below demonstrates various features of the dropdown. The source code can be viewed to see implementation methods.</p>
+			</article>
 
-		<section>
-			<h3>Select (nested)</h3>
-			<select>
-				<optgroup label="Group 1">
-					<option>Option 1.1</option>
-					<option>Option 1.2</option>
-					<option>Option 1.3</option>
-				</optgroup>
-				<optgroup label="Group 2">
-					<option>Option 2.1</option>
-					<option>Option 2.2</option>
-					<option>Option 2.3</option>
-				</optgroup>
-				<optgroup label="Group 3">
-					<option>Option 3.1</option>
-					<option>Option 3.2</option>
-					<option>Option 3.3</option>
-				</optgroup>
-			</select>
-		</section>
+			<article id="demo-1">
+				<header>
+					<h4>Form select</h4>
+					<p>Selecting an option will automatically update the original form control and vice-versa</p>
+				</header>
+				<section>
+					<select>
+						<option>Option 1</option>
+						<option>Option 2</option>
+						<option>Option 3</option>
+					</select>
+				</section>
+			</article>
 
-		<section>
-			<h3>List</h3>
-			<ul>
-				<li>Option 1</li>
-				<li>Option 2</li>
-				<li>Option 3</li>
-			</ul>
-		</section>
+			<article id="demo-2">
+				<header>
+					<h4>Multi-select</h4>
+					<p>Dropdown will automatically close once the maximum number of items has been selected</p>
+				</header>
+				<section>
+					<select multiple="multiple" data-dropdown='{ "toggleText": "Please select 2 items", "maxSelect": 2 }'>
+						<option>Option 1</option>
+						<option>Option 2</option>
+						<option>Option 3</option>
+					</select>
+				</section>
+				<aside>
+					<p>By default, <code>&lt;select&gt;</code> elements with the <code>multiple</code> attribute will be converted to a multi-select dropdown.</p>
+					<p>To explicitally enable or disable, set <code>multi</code> to <code>true</code> or <code>false</code>. Set to <code>null</code> to auto-detect.</p>
+				</aside>
+			</article>
 
-		<section>
-			<h3>List (links)</h3>
-			<ul>
-				<li><a href="#option-1">Option 1</a></li>
-				<li><a href="#option-2">Option 2</a></li>
-				<li><a href="#option-3">Option 3</a></li>
-			</ul>
-		</section>
+			<article id="demo-3">
+				<header>
+					<h4>Nested</h4>
+					<p>Dropdown position will be remembered when reopened</p>
+				</header>
+				<section>
+					<select data-dropdown='{ "closeReset": false }'>
+						<optgroup label="Group 1">
+							<option>Option 1.1</option>
+							<option>Option 1.2</option>
+							<option>Option 1.3</option>
+						</optgroup>
+						<optgroup label="Group 2">
+							<option>Option 2.1</option>
+							<option>Option 2.2</option>
+							<option>Option 2.3</option>
+						</optgroup>
+						<optgroup label="Group 3">
+							<option>Option 3.1</option>
+							<option>Option 3.2</option>
+							<option>Option 3.3</option>
+						</optgroup>
+					</select>
+				</section>
+				<aside>
+					<p>By default, nested lists and form selects will be converted into nested dropdown menus.</p>
+					<p>To disable this behaviour, set <code>nested</code> to <code>false</code>.</p>
+				</aside>
+			</article>
 
-		<section>
-			<h3>List (grouped)</h3>
-			<ul data-dropdown='{ "nested": false }'>
-				<li>
-					Group 1
+			<article id="demo-4">
+				<header>
+					<h4>Grouped (nesting disabled)</h4>
+					<p>An extra divider has been added to seperate Option 4</p>
+				</header>
+				<section>
+					<select data-dropdown='{ "nested": false }'>
+						<optgroup label="Group 1">
+							<option>Option 1.1</option>
+							<option>Option 1.2</option>
+							<option>Option 1.3</option>
+						</optgroup>
+						<optgroup label="Group 2">
+							<option>Option 2.1</option>
+							<option>Option 2.2</option>
+							<option>Option 2.3</option>
+						</optgroup>
+						<optgroup label="Group 3">
+							<option>Option 3.1</option>
+							<option>Option 3.2</option>
+							<option>Option 3.3</option>
+						</optgroup>
+						<option data-dropdown='{ "divider": "top" }'>Option 4</option>
+					</select>
+				</section>
+				<aside>
+					<p>By default, dividers are automatically added above labels.</p>
+					<p>They can be explicitally added above and/or below items by setting <code>divider</code> to <code>&quot;top&quot;</code>, <code>&quot;bottom&quot;</code> or <code>&quot;both&quot;</code> on the item.</p>
+				</aside>
+			</article>
+
+			<article id="demo-5">
+				<header>
+					<h4>Links</h4>
+					<p>Selecting one of these items will change the URL</p>
+				</header>
+				<section>
 					<ul>
-						<li>Option 1.1</li>
-						<li>Option 1.2</li>
-						<li>Option 1.3</li>
+						<li><a href="#option-1">Option 1</a></li>
+						<li><a href="#option-2">Option 2</a></li>
+						<li><a href="#option-3">Option 3</a></li>
 					</ul>
-				</li>
-				<li>
-					Group 2
-					<ul>
-						<li>Option 2.1</li>
-						<li>Option 2.2</li>
-						<li>Option 2.3</li>
-					</ul>
-				</li>
-				<li>
-					Group 3
-					<ul>
-						<li>Option 3.1</li>
-						<li>Option 3.2</li>
-						<li>Option 3.3</li>
-					</ul>
-				</li>
-				<li data-dropdown='{ "divider": "top" }'>Option 4</li>
-			</ul>
+				</section>
+				<aside>
+					<p>By default, link items will not be selected and instead will be treated as any other link on the page.</p>
+					<p>To disable this behaviour, set <code>followLinks</code> to <code>false</code>.</p>
+				</aside>
+			</article>
+
 		</section>
+
+		<footer>
+			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download daneWilliams/jquery.dropdown on GitHub">Download v2.0.3</a>
+			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown" data-icon="octicon-star" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/stargazers" data-count-api="/repos/daneWilliams/jquery.dropdown#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star daneWilliams/jquery.dropdown on GitHub">Star</a>
+			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/network" data-count-api="/repos/daneWilliams/jquery.dropdown#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork daneWilliams/jquery.dropdown on GitHub">Fork</a>
+		</footer>
 
 	</main>
+
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="./js/jquery.dropdown.js"></script>
@@ -134,6 +165,7 @@
 
 		}(jQuery));
 	</script>
+
 
 </body>
 
