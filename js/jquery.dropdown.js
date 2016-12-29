@@ -6,7 +6,7 @@
  *
  *	================================================================
  *
- *	@version		2.0.2
+ *	@version		2.1.0
  *
  *	@author			Dane Williams (danewilliams.uk)
  *	@copyright		2014-2016 Dane Williams
@@ -2418,7 +2418,8 @@
 			}
 
 			// Scroll to selected item
-			self._scrollSelected( false, resize );
+			if ( opt.scrollSelected )
+				self._scrollSelected( false, resize );
 
 			// Event
 			self.$elem.trigger( self.name + '.open:before', this );
@@ -2529,6 +2530,7 @@
 		_beforeOpenMenu: function( menu, current ) {
 
 			var self = this,
+			    opt  = self.opt,
 			    inst = self.inst,
 			    elem = self.elems,
 			    cls  = self.cls;
@@ -2551,7 +2553,8 @@
 			var resize = self.resize( menu.uid );
 
 			// Scroll to selected item
-			self._scrollSelected( menu.uid, resize );
+			if ( opt.scrollSelected )
+				self._scrollSelected( menu.uid, resize );
 
 			// Event
 			self.$elem.trigger( self.name + '.open.menu:before', [ menu, current, this ] );
@@ -2923,13 +2926,13 @@
 
 				selectedOffset = $selected.position().top;
 
-				if ( selectedOffset < 0 || selectedOffset > resize.collision.height.list ) {
+				if ( selectedOffset < 0 || selectedOffset > resize.collision.list.height ) {
 
 					selectedOffset = selectedOffset + $list.scrollTop();
 
 				}
 
-				selectedOffset = selectedOffset - ( resize.collision.height.menu - resize.collision.height.list );
+				selectedOffset = selectedOffset - ( resize.collision.menu.height - resize.collision.list.height );
 
 			}
 
@@ -3257,24 +3260,23 @@
 		speed: 200,
 		easing: 'easeInOutCirc',
 
-		// Sizing/spacing
-		margin:     20,
-		collision:  true,
-		autoResize: 200,
+		// Positioning
+		margin:         20,
+		collision:      true,
+		autoResize:     200,
+		scrollSelected: true,
 
 		// Keyboard navigation
 		keyboard: true,
 
-		// Nested
+		// Nesting
 		nested: true,
+		selectParents: false,
 
 		// Multiple
 		multi:     false,
 		maxSelect: false,
 		minSelect: false,
-
-		// Parents
-		selectParents: false,
 
 		// Links
 		selectLinks: false,
