@@ -18,7 +18,7 @@
 	<main>
 
 		<header>
-			<h1>jQuery Dropdown <small>v2.0.3</small></h1>
+			<h1>jQuery Dropdown <small>v2.1.0</small></h1>
 		</header>
 
 		<section>
@@ -58,6 +58,10 @@
 					<p>By default, <code>&lt;select&gt;</code> elements with the <code>multiple</code> attribute will be converted to a multi-select dropdown.</p>
 					<p>To explicitally enable or disable, set <code>multi</code> to <code>true</code> or <code>false</code>. Set to <code>null</code> to auto-detect.</p>
 				</aside>
+				<aside>
+					<p>A minimum and maximum number of selectable items can be set with <code>minSelect</code> and <code>maxSelect</code>.</p>
+					<p>If <code>autoCloseMax</code> is <code>true</code>, the dropdown will automatically close when the maximum selection has been reached.</p>
+				</aside>
 			</article>
 
 			<article id="demo-3">
@@ -88,12 +92,16 @@
 					<p>By default, nested lists and form selects will be converted into nested dropdown menus.</p>
 					<p>To disable this behaviour, set <code>nested</code> to <code>false</code>.</p>
 				</aside>
+				<aside>
+					<p>Dropdown menus will be reset by default when the dropdown is closed.</p>
+					<p>To always display the last opened menu, set <code>closeReset</code> to <code>false</code></p>
+				</aside>
 			</article>
 
 			<article id="demo-4">
 				<header>
-					<h4>Grouped (nesting disabled)</h4>
-					<p>An extra divider has been added to seperate Option 4</p>
+					<h4>Grouped</h4>
+					<p>Extra divider added to Option 4</p>
 				</header>
 				<section>
 					<select data-dropdown='{ "nested": false }'>
@@ -116,8 +124,11 @@
 					</select>
 				</section>
 				<aside>
+					<p>When nesting is disabled, parent items will be added as labels instead.</p>
+				</aside>
+				<aside>
 					<p>By default, dividers are automatically added above labels.</p>
-					<p>They can be explicitally added above and/or below items by setting <code>divider</code> to <code>&quot;top&quot;</code>, <code>&quot;bottom&quot;</code> or <code>&quot;both&quot;</code> on the item.</p>
+					<p>They can be explicitally added above and/or below items by setting <code>divider</code> to <code>&quot;top&quot;</code>, <code>&quot;bottom&quot;</code> or <code>&quot;both&quot;</code>.</p>
 				</aside>
 			</article>
 
@@ -142,9 +153,15 @@
 		</section>
 
 		<footer>
-			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download daneWilliams/jquery.dropdown on GitHub">Download v2.0.3</a>
-			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown" data-icon="octicon-star" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/stargazers" data-count-api="/repos/daneWilliams/jquery.dropdown#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star daneWilliams/jquery.dropdown on GitHub">Star</a>
-			<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/network" data-count-api="/repos/daneWilliams/jquery.dropdown#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork daneWilliams/jquery.dropdown on GitHub">Fork</a>
+
+			<nav>
+				<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download daneWilliams/jquery.dropdown on GitHub">Download</a>
+				<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown" data-icon="octicon-star" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/stargazers" data-count-api="/repos/daneWilliams/jquery.dropdown#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star daneWilliams/jquery.dropdown on GitHub">Star</a>
+				<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/network" data-count-api="/repos/daneWilliams/jquery.dropdown#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork daneWilliams/jquery.dropdown on GitHub">Fork</a>
+			</nav>
+
+			<p id="copyright">&copy; <a href="http://danewilliams.uk">Dane Williams</a></p>
+
 		</footer>
 
 	</main>

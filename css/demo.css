@@ -13,7 +13,12 @@ body {
 }
 
 a { 
-	color: #0d659b; 
+	color: #0d659b;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 
@@ -84,6 +89,11 @@ footer {
 	padding: 60px 0;
 }
 
+footer nav {
+	height: 28px;
+	overflow: hidden;
+}
+
 footer iframe {
 	margin: 0 2px;
 }
@@ -107,6 +117,16 @@ footer iframe {
 	background-color: #fff;
 	border: 1px solid #d5d5d5;
 	border-radius: 3px;
+}
+
+#copyright {
+	color: #777;
+	font-size: 14px;
+	margin: 30px 0 0;
+}
+
+#copyright a {
+	color: inherit;
 }
 
 
@@ -150,14 +170,18 @@ header p:last-child {
 
 /* Footer */
 aside {
+	padding: 10px 0 10px 20px;
 	margin: 30px 0 0;
+	border-left: 3px solid #e1e2e3;
+}
+
+aside + aside {
+	margin-top: 10px;
 }
 
 aside p {
 	font-size: 13px;
-	margin: 0 0 3px;
-	padding: 6px 0 6px 20px;
-	border-left: 3px solid #e1e2e3;
+	margin: 0 0 10px;
 }
 
 aside p:last-child {
@@ -188,14 +212,20 @@ aside p:last-child {
 	margin: 0 0 20px; 
 }
 
- 
+
 
 /**
- *	=Demo #1
+ *
+ *	=Demos
+ *
+ *	================================================================ */
+
+
+/**
+ *	=General
  *	---------------------------------------------------------------- */
 
-#demo-1 select {
-	display: inline-block !important;
+select {
 	vertical-align: bottom;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
@@ -203,4 +233,22 @@ aside p:last-child {
 	line-height: 40px;
 	margin-right: 10px;
 	padding: 0 10px;
+}
+
+option {
+	padding: 4px 10px;
+}
+
+select[multiple] {
+	height: 120px;
+	padding: 0;
+}
+
+
+/**
+ *	=Demo #1
+ *	---------------------------------------------------------------- */
+
+#demo-1 select {
+	display: inline-block !important;
 }
