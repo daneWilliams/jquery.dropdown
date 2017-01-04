@@ -1,17 +1,22 @@
 {
-	"name": "jquery-dropdown",
+	"name": "dane-jquery-dropdown",
 	"description": "A flexible, cross-device replacement for form selects and multi-level menus",
 	"main": [
 		"js/jquery.dropdown.min.js",
-		"css/dropdown.css",
-		"less/dropdown.less"
+		"css/dropdown.min.css"
 	],
-	"authors": [
-		"Dane Williams (http://danewilliams.uk)",
+	"ignore": [
+		"less",
+		".git",
+		".gitignore",
+		"bower.json",
+		"README.md"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/daneWilliams/jquery.dropdown.git"
+	"dependencies": {
+		"jquery": ">=1.10.0"
 	},
+	"authors": [
+		"Dane (http://dane.one)"
+	],
 	"license": "MIT"
 }
