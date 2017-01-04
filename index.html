@@ -11,6 +11,10 @@
 	<link rel="stylesheet" type="text/css" href="./css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="./css/dropdown.css" />
 
+	<style type="text/css">
+		.dropdown-toggle .demo-img { margin: -10px 0 -10px -20px; }
+	</style>
+
 </head>
 
 <body>
@@ -18,7 +22,7 @@
 	<main>
 
 		<header>
-			<h1>jQuery Dropdown <small>v2.1.0</small></h1>
+			<h1>jQuery Dropdown <small>v2.2.0</small></h1>
 		</header>
 
 		<section>
@@ -150,6 +154,24 @@
 				</aside>
 			</article>
 
+			<article id="demo-6">
+				<header>
+					<h4>Custom item HTML</h4>
+					<p>The toggle will display the selected item's contents</p>
+				</header>
+				<section>
+					<ul data-dropdown='{ "autoToggleHTML": true }'>
+						<li>Option 1<br /><small style="opacity: .5;">Lorem ipsum dolor sit amet</small></li>
+						<li><img class="demo-img" src="http://placekitten.com/400/200" width="400" height="200" /></li>
+						<li>Option 3</li>
+					</ul>
+				</section>
+				<aside>
+					<p>Any child elements within a list item will be displayed as custom HTML within the dropdown.</p>
+					<p>To display the custom HTML in the toggle, set <code>autoToggleHTML</code> to <code>true</code>.</p>
+				</aside>
+			</article>
+
 		</section>
 
 		<footer>
@@ -160,7 +182,7 @@
 				<a class="github-button" href="https://github.com/daneWilliams/jquery.dropdown/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/daneWilliams/jquery.dropdown/network" data-count-api="/repos/daneWilliams/jquery.dropdown#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork daneWilliams/jquery.dropdown on GitHub">Fork</a>
 			</nav>
 
-			<p id="copyright">&copy; <a href="http://danewilliams.uk">Dane Williams</a></p>
+			<p id="copyright">&copy; <a href="http://dane.one">Dane Williams</a></p>
 
 		</footer>
 

@@ -6,7 +6,7 @@
  *
  *	================================================================
  *
- *	@version		2.1.0
+ *	@version		2.2.0
  *
  *	@author			Dane Williams (danewilliams.uk)
  *	@copyright		2014-2016 Dane Williams
@@ -240,11 +240,19 @@
 
 				} else {
 
+					var toggleText = item.text;
+
+					if ( opt.autoToggleHTML && item.html ) {
+
+						toggleText = item.html;
+
+					}
+
 					if ( opt.multi )
-						self.toggleTextMulti( item.text );
+						self.toggleTextMulti( toggleText );
 
 					else
-						self.toggleText( item.text );
+						self.toggleText( toggleText );
 
 				}
 
@@ -2063,16 +2071,24 @@
 			$item.data( 'dropdown-uid', item.uid );
 
 			// Add content
-			if ( item.html ) {
+			var link = false;
 
-				$item.append( item.html );
+			if ( item.html ) {
 
 				if ( $item.children('a').length ) {
 
 					elems.menuLink = $item.children('a');
 					$item.children('a').addClass( cls.menuLink );
 
+					link = true;
+
+				} else {
+
+					elems.menuLink.appendTo( $item );
+
 				}
+
+				elems.menuLink.html( item.html );
 
 			} else {
 
@@ -2286,12 +2302,12 @@
 
 						if ( $this.children('a').length ) {
 
-							item.text( $this.children('a').eq(0).text() );
+							item.text = $this.children('a').eq(0).text();
 
 						} else {
 
 							if ( $this.children('span').length )
-								item.text( $this.children('span').eq(0).text() );
+								item.text = $this.children('span').eq(0).text();
 
 						}
 
@@ -3167,7 +3183,7 @@
 
 		// Toggle
 		toggleButton:  '<a href="#" />',
-		toggleText:    '<span />',
+		toggleText:    '<div />',
 		toggleIcon:    '<i />',
 
 		// Close
@@ -3296,6 +3312,7 @@
 		toggleText:    'Please select',
 		autoToggle:     true,
 		autoToggleLink: false,
+		autoToggleHTML: false,
 
 		// Title
 		titleText: 'Please select',
