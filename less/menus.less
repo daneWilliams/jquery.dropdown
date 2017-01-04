@@ -40,14 +40,14 @@
 
 	position: absolute;
 	text-decoration: none;
-	top: 50%;
+	top: 0;
 	font-weight: bold;
+	color: @dropdown-button-color;
 	font-size: @dropdown-button-size;
 	width: @dropdown-button-width;
 	height: @dropdown-button-height;
 	line-height: @dropdown-button-height;
 	text-align: center;
-	margin-top: -( @dropdown-button-height / 2 );
 
 	.dropdown-text {
 		display: none;
@@ -199,9 +199,16 @@
 
 }
 
+// Hover
+.dropdown-link:hover {
+	background: @dropdown-hover-bg;
+	color: @dropdown-hover-color;
+}
+
 // Focus
 .dropdown-focused .dropdown-link {
 	background: @dropdown-focused-bg;
+	color: @dropdown-focused-color;
 }
 
 // Selected

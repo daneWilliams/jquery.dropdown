@@ -12,6 +12,9 @@
   vertical-align: bottom;
   line-height: 1.5;
 }
+.dropdown a {
+  text-decoration: none;
+}
 /**
  *	=Toggle
  *	---------------------------------------------------------------- */
@@ -142,14 +145,14 @@
 .dropdown-back {
   position: absolute;
   text-decoration: none;
-  top: 50%;
+  top: 0;
   font-weight: bold;
+  color: #aaaaaa;
   font-size: 16px;
   width: 50px;
   height: 50px;
   line-height: 50px;
   text-align: center;
-  margin-top: -25px;
 }
 .dropdown-close .dropdown-text,
 .dropdown-back .dropdown-text {
@@ -255,8 +258,13 @@
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
 }
+.dropdown-link:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #0d659b;
+}
 .dropdown-focused .dropdown-link {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.03);
+  color: #0d659b;
 }
 .dropdown-selected .dropdown-link {
   background: #1d81c0;

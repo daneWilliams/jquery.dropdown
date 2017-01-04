@@ -28,6 +28,7 @@
 @dropdown-button-size:   ( @dropdown-size + 1px );
 @dropdown-button-width:  @dropdown-header-height;
 @dropdown-button-height: @dropdown-header-height;
+@dropdown-button-color:  #aaa;
 
 // Labels
 @dropdown-label-size:  ( @dropdown-size - 3px );
@@ -40,8 +41,15 @@
 @dropdown-link-size:    @dropdown-size;
 @dropdown-link-spacing: @dropdown-toggle-spacing;
 
+@dropdown-link-color: #0d659b;
+
+// Hover
+@dropdown-hover-bg:    rgba(0,0,0,.03);
+@dropdown-hover-color: @dropdown-link-color;
+
 // Focused
-@dropdown-focused-bg: rgba(0,0,0,.02);
+@dropdown-focused-bg:    @dropdown-hover-bg;
+@dropdown-focused-color: @dropdown-hover-color;
 
 // Selected
 @dropdown-selected-bg:    #1d81c0;
