@@ -32,18 +32,26 @@
 	margin: 0;
 	box-shadow: @dropdown-toggle-shadow;
 
-	&:after {
-		content: '';
-		opacity: .6;
+	.dropdown-icon {
+
 		height: 2px;
+		width: 8px;
+		opacity: .6;
 		position: relative;
-		top: 2px;
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: @dropdown-toggle-spacing;
-		border-left: 4px solid transparent;
-		border-right: 4px solid transparent;
-		border-top: 4px solid;
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-top: 4px solid;
+		}
+
 	}
 
 	.dropdown-text {

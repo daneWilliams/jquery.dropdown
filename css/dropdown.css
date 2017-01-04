@@ -25,15 +25,20 @@
   margin: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-.dropdown-toggle:after {
-  content: '';
-  opacity: .6;
+.dropdown-toggle .dropdown-icon {
   height: 2px;
+  width: 8px;
+  opacity: .6;
   position: relative;
-  top: 2px;
   display: inline-block;
   vertical-align: middle;
   margin-left: 20px;
+}
+.dropdown-toggle .dropdown-icon:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid;
