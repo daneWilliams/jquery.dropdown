@@ -1245,10 +1245,11 @@
 				if ( item.value || item.url || opt.selectParents ) {
 
 					var parent = $.extend( true, {}, self.objects.item, {
-						uid: false,
+						uid: self.id(),
 						menu: false,
 						parent: item.uid,
-						children: {}
+						children: {},
+						text: item.text 
 					});
 
 					item.children.items.unshift( parent );
