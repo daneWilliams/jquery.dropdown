@@ -1243,12 +1243,12 @@
 
 				// Add parent
 				if ( item.value || item.url || opt.selectParents ) {
-
 					var parent = $.extend( true, {}, self.objects.item, {
 						uid: self.id(),
 						menu: false,
 						parent: item.uid,
 						children: {},
+						value: item.value, 
 						text: item.text 
 					});
 
