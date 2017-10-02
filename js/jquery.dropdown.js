@@ -1243,12 +1243,13 @@
 
 				// Add parent
 				if ( item.value || item.url || opt.selectParents ) {
-
 					var parent = $.extend( true, {}, self.objects.item, {
-						uid: false,
+						uid: self.id(),
 						menu: false,
 						parent: item.uid,
-						children: {}
+						children: {},
+						value: item.value, 
+						text: item.text 
 					});
 
 					item.children.items.unshift( parent );
@@ -3357,7 +3358,7 @@
 				var instance = $.data( this, 'plugin.dropdown' );
 
 				// Allow access to public methods
-				if ( instance instanceof dropdown && typeof instance[ options ] === 'function' ) {
+				if ( instance instanceof Dropdown && typeof instance[ options ] === 'function' ) {
 					returns = instance[ options ].apply( instance, Array.prototype.slice.call( args, 1 ) );
 				}
 
