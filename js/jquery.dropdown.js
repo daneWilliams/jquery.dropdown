@@ -3358,7 +3358,7 @@
 				var instance = $.data( this, 'plugin.dropdown' );
 
 				// Allow access to public methods
-				if ( instance instanceof dropdown && typeof instance[ options ] === 'function' ) {
+				if ( instance instanceof Dropdown && typeof instance[ options ] === 'function' ) {
 					returns = instance[ options ].apply( instance, Array.prototype.slice.call( args, 1 ) );
 				}
 

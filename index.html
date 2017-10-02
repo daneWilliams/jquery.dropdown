@@ -12,7 +12,7 @@
 			<link rel="stylesheet" type="text/css" href="./css/dropdown.css" />
 
 			<style type="text/css">
-		.dropdown-toggle .demo-img { margin: -10px 0 -10px -20px; }
+				.dropdown-toggle .demo-img { margin: -10px 0 -10px -20px; }
 			</style>
 
 		</head>
@@ -176,7 +176,7 @@
 							<h4>Multiple  Nested SelectParent </h4>
 							<p>The toggle will display the selected item's contents</p>
 						</header>
-						<ul data-dropdown='{ "multi": true, "nested": true, "selectParents": true }'>
+						<ul id="myDD"  data-dropdown='{ "multi": true, "nested": true, "selectParents": true }'>
 							<li data-dropdown='{"value":"Item 1"}'>Item 1</li>
 							<li data-dropdown='{"value":"Item 2"}' data-dropdown-text="Item 2">
 								<ul>
@@ -229,15 +229,22 @@
 			<script src="./js/jquery.dropdown.js"></script>
 
 			<script type="text/javascript">
-		(function($) {
+				(function($) {
 
-			$(function() {
+					$(function() {
 
-				$('select, ul').dropdown();
+						$('select, ul').dropdown();
+						
+						$('select, ul').on('dropdown.select',function(e,item, previous, self ){
+							
+							var values=$(this).dropdown('value');
+							console.log(values);							
 
-			});
+						});
+					
+					});
 
-		}(jQuery));
+				}(jQuery));
 			</script>
 
 
